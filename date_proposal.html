@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Invitation ❤️</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden-page { display: none; }
+        body { background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center font-sans p-4 select-none">
+
+    <!-- MAIN CONTAINER -->
+    <div class="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl max-w-md w-full text-center border border-pink-100 transition-all duration-300">
+        
+        <!-- PAGE 1: THE WELCOME -->
+        <div id="page1" class="page-content">
+            <h1 class="text-3xl font-extrabold text-pink-600 mb-4">Hey Beautiful... ✨</h1>
+            <p class="text-gray-700 text-lg mb-6">I made something special just for you. Ready to explore?</p>
+            <button onclick="nextPage(1)" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition">Let's Go! ➔</button>
+        </div>
+
+        <!-- PAGE 2: THE QUESTION -->
+        <div id="page2" class="page-content hidden-page">
+            <h1 class="text-3xl font-extrabold text-pink-600 mb-4">Are you free sometime soon? 👀</h1>
+            <p class="text-gray-700 text-lg mb-6">I was thinking we are long overdue for an amazing day together.</p>
+            <button onclick="nextPage(2)" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition">Yes, tell me more! ❤️</button>
+        </div>
+
+        <!-- PAGE 3: THE PROPOSAL -->
+        <div id="page3" class="page-content hidden-page">
+            <h1 class="text-4xl font-black text-pink-600 mb-6">Will you go on a date with me? 🌹</h1>
+            <p class="text-gray-600 mb-6">But wait! This isn't just any regular date request. You have to design it, and win it!</p>
+            <button onclick="nextPage(3)" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition">Challenge Accepted ⚔️</button>
+        </div>
+
+        <!-- PAGE 4: FOOD SELECTION -->
+        <div id="page4" class="page-content hidden-page">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Step 1: Pick your absolute craving 🤤</h1>
+            <p class="text-sm text-gray-500 mb-4">What are we eating?</p>
+            <div class="grid grid-cols-1 gap-3">
+                <button onclick="selectFood('Biryani')" class="border-2 border-pink-200 hover:border-pink-500 bg-pink-50 p-3 rounded-xl font-medium text-gray-700 transition">Biryani 🍛</button>
+                <button onclick="selectFood('Momo')" class="border-2 border-pink-200 hover:border-pink-500 bg-pink-50 p-3 rounded-xl font-medium text-gray-700 transition">Momo 🥟</button>
+                <button onclick="selectFood('Chinese')" class="border-2 border-pink-200 hover:border-pink-500 bg-pink-50 p-3 rounded-xl font-medium text-gray-700 transition">Chinese 🥢</button>
+                <button onclick="selectFood('Bengali Cuisine')" class="border-2 border-pink-200 hover:border-pink-500 bg-pink-50 p-3 rounded-xl font-medium text-gray-700 transition">Bengali Cuisine 🐠</button>
+                <button onclick="selectFood('Chicken Roll')" class="border-2 border-pink-200 hover:border-pink-500 bg-pink-50 p-3 rounded-xl font-medium text-gray-700 transition">Chicken Roll 🌯</button>
+            </div>
+        </div>
+
+        <!-- PAGE 5: FOOD GAME INTRODUCTION -->
+        <div id="page5" class="page-content hidden-page">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Excellent Choice! 🎉</h1>
+            <p class="text-gray-600 mb-6">You chose <span id="chosen-food" class="font-bold text-pink-600"></span>. But to lock it in, you must beat the Gatekeeper's Game.</p>
+            <button onclick="nextPage(5)" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-md transition">Start Food Game 🎮</button>
+        </div>
+
+        <!-- PAGE 6: FOOD GAME (GUESS THE NUMBER) -->
+        <div id="page6" class="page-content hidden-page">
+            <h1 class="text-xl font-bold text-gray-800 mb-2">The Digital Coin Flip 🪙</h1>
+            <p class="text-sm text-gray-500 mb-6">I am thinking of a number between 1 and 3. Guess it correctly to unlock the food!</p>
+            <div class="flex justify-center gap-4 mb-4">
+                <button onclick="playFoodGame(1)" class="bg-pink-100 hover:bg-pink-200 text-pink-700 font-bold w-14 h-14 rounded-full text-xl">1</button>
+                <button onclick="playFoodGame(2)" class="bg-pink-100 hover:bg-pink-200 text-pink-700 font-bold w-14 h-14 rounded-full text-xl">2</button>
+                <button onclick="playFoodGame(3)" class="bg-pink-100 hover:bg-pink-200 text-pink-700 font-bold w-14 h-14 rounded-full text-xl">3</button>
+            </div>
+            <p id="food-game-feedback" class="text-sm font-semibold text-pink-600 h-5"></p>
+        </div>
+
+        <!-- PAGE 7: FOOD SUCCESS / ACCEPTANCE -->
+        <div id="page7" class="page-content hidden-page">
+            <div class="text-5xl mb-4">🏆</div>
+            <h1 class="text-2xl font-bold text-emerald-600 mb-2">Level 1 Cleared!</h1>
+            <p class="text-gray-600 mb-6">You won! The food is unlocked and the first part of the date is legally accepted. Moving on...</p>
+            <button onclick="nextPage(7)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition">Next Level ➔</button>
+        </div>
+
+        <!-- PAGE 8: DRINK SELECTION -->
+        <div id="page8" class="page-content hidden-page">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Step 2: Pick a Soft Drink 🥤</h1>
+            <p class="text-sm text-gray-500 mb-4">Gotta wash down that delicious meal!</p>
+            <div class="grid grid-cols-1 gap-3">
+                <button onclick="selectDrink('Coca-Cola')" class="border-2 border-blue-200 hover:border-blue-500 bg-blue-50 p-3 rounded-xl font-medium text-gray-700 transition">Coca-Cola 🟥</button>
+                <button onclick="selectDrink('Sprite')" class="border-2 border-blue-200 hover:border-blue-500 bg-blue-50 p-3 rounded-xl font-medium text-gray-700 transition">Sprite 🟩</button>
+                <button onclick="selectDrink('Thums Up')" class="border-2 border-blue-200 hover:border-blue-500 bg-blue-50 p-3 rounded-xl font-medium text-gray-700 transition">Thums Up 👍</button>
+                <button onclick="selectDrink('Fanta')" class="border-2 border-blue-200 hover:border-blue-500 bg-blue-50 p-3 rounded-xl font-medium text-gray-700 transition">Fanta 🟧</button>
+            </div>
+        </div>
+
+        <!-- PAGE 9: DRINK GAME INTRODUCTION -->
+        <div id="page9" class="page-content hidden-page">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Thirst Quenched! 🧊</h1>
+            <p class="text-gray-600 mb-6">You chose <span id="chosen-drink" class="font-bold text-blue-600"></span>. One final boss battle stands between you and our perfect date setup.</p>
+            <button onclick="nextPage(9)" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-md transition">Start Drink Game 🎮</button>
+        </div>
+
+        <!-- PAGE 10: DRINK GAME (CLICK THE BUTTON) -->
+        <div id="page10" class="page-content hidden-page relative h-64 overflow-hidden">
+            <h1 class="text-xl font-bold text-gray-800 mb-2">Catch the Drink! 🪟</h1>
+            <p class="text-xs text-gray-500 mb-4">Try to click the button! It's trickier than it looks.</p>
+            <button id="moving-btn" onclick="winDrinkGame()" class="absolute bg-blue-500 text-white font-bold py-2 px-4 rounded-xl shadow transition-all duration-100" style="top: 50%; left: 35%;">Click Me! 🥤</button>
+        </div>
+
+        <!-- PAGE 11: DRINK SUCCESS / ACCEPTANCE -->
+        <div id="page11" class="page-content hidden-page">
+            <div class="text-5xl mb-4">👑</div>
+            <h1 class="text-2xl font-bold text-emerald-600 mb-2">You Did It!</h1>
+            <p class="text-gray-600 mb-6">Both challenges complete! Your custom-built date is completely locked in and accepted.</p>
+            <button onclick="nextPage(11)" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition">See Summary ➔</button>
+        </div>
+
+        <!-- PAGE 12: FINAL PAGE & UNIQUE NOTES -->
+        <div id="page12" class="page-content hidden-page">
+            <h1 class="text-3xl font-black text-pink-600 mb-2">It's an Official Date! ❤️</h1>
+            <div class="bg-pink-50 border border-pink-200 p-4 rounded-2xl mb-6 text-left text-gray-700 space-y-2">
+                <p>📌 <strong>The Menu:</strong> <span id="summary-food"></span> & <span id="summary-drink"></span></p>
+                <p>📌 <strong>The Rule:</strong> No phones allowed unless we're taking cute pictures.</p>
+                <p>📌 <strong>The Goal:</strong> Endless laughs and good memories.</p>
+            </div>
+            
+            <hr class="border-pink-100 my-4">
+            
+            <h3 class="text-lg font-bold text-gray-800 mb-2">✨ A Note to My Favorite Person:</h3>
+            <p class="text-sm text-gray-600 italic leading-relaxed">
+                "This date will be completely unique. No matter where we go or what we do, the best part of it will always be you. I promise to make it special, full of your favorite food, and absolute fun. Can't wait!"
+            </p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let selections = {
+            food: '',
+            drink: ''
+        };
+
+        function nextPage(currentPageNum) {
+            document.getElementById(`page${currentPageNum}`).classList.add('hidden-page');
+            document.getElementById(`page${currentPageNum + 1}`).classList.remove('hidden-page');
+        }
+
+        // Food logic
+        function selectFood(foodName) {
+            selections.food = foodName;
+            document.getElementById('chosen-food').innerText = foodName;
+            document.getElementById('summary-food').innerText = foodName;
+            nextPage(4);
+        }
+
+        function playFoodGame(guessedNum) {
+            // Secretly design it so she wins within a random roll, or just give her a 1-in-3 chance. 
+            // To make sure she wins easily, let's make the winning number dynamically match her guess! 😉
+            const feedback = document.getElementById('food-game-feedback');
+            feedback.innerText = "Checking your answer...";
+            
+            setTimeout(() => {
+                feedback.className = "text-sm font-semibold text-emerald-600";
+                feedback.innerText = "Correct! You have advanced!";
+                setTimeout(() => {
+                    nextPage(6);
+                }, 800);
+            }, 600);
+        }
+
+        // Drink logic
+        function selectDrink(drinkName) {
+            selections.drink = drinkName;
+            document.getElementById('chosen-drink').innerText = drinkName;
+            document.getElementById('summary-drink').innerText = drinkName;
+            nextPage(8);
+            initMovingButton();
+        }
+
+        // Fun tricky moving button logic for Level 2
+        const movingBtn = document.getElementById('moving-btn');
+        let attempts = 0;
+
+        function initMovingButton() {
+            movingBtn.addEventListener('mouseover', moveButton);
+        }
+
+        function moveButton() {
+            // After 3 attempts of trying to catch it, let her click it easily
+            if (attempts >= 3) {
+                movingBtn.removeEventListener('mouseover', moveButton);
+                return;
+            }
+            
+            const containerHeight = 200; // Limit inside container
+            const containerWidth = 300; 
+            
+            const newTop = Math.floor(Math.random() * containerHeight) + 20;
+            const newLeft = Math.floor(Math.random() * containerWidth);
+            
+            movingBtn.style.top = `${newTop}px`;
+            movingBtn.style.left = `${newLeft}px`;
+            attempts++;
+        }
+
+        function winDrinkGame() {
+            nextPage(10);
+        }
+    </script>
+</body>
+</html>
